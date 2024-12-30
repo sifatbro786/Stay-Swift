@@ -1,6 +1,6 @@
 import HotelCard from "./HotelCard";
 
-export default function HotelList() {
+export default async function HotelList() {
     return (
         <div className="col-span-9">
             <div className="space-y-4">
