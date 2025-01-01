@@ -14,6 +14,7 @@ export const {
 } = NextAuth({
     adapter: MongoDBAdapter(mongoClientPromise),
     trustHost: true,
+    secret: process.env.AUTH_SECRET,
     session: {
         strategy: "jwt",
     },
