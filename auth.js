@@ -53,32 +53,32 @@ export const {
             clientSecret: process.env.FACEBOOK_CLIENT_SECRET,
         }),
     ],
-    pages: {
-        signIn: "/api/auth/signin",
-        error: "/api/auth/error",
-    },
-    callbacks: {
-        async signIn({ user, account, profile, email, credentials }) {
-            if (account?.provider === "credentials" && user?.error) {
-                throw new Error(user.error);
-            }
-            return true;
-        },
+    // pages: {
+    //     signIn: "/api/auth/signin",
+    //     error: "/api/auth/error",
+    // },
+    // callbacks: {
+    //     async signIn({ user, account, profile, email, credentials }) {
+    //         if (account?.provider === "credentials" && user?.error) {
+    //             throw new Error(user.error);
+    //         }
+    //         return true;
+    //     },
 
-        async session({ session, token }) {
-            if (token) {
-                session.user.id = token.id;
-                session.user.email = token.email;
-            }
-            return session;
-        },
+    //     async session({ session, token }) {
+    //         if (token) {
+    //             session.user.id = token.id;
+    //             session.user.email = token.email;
+    //         }
+    //         return session;
+    //     },
 
-        async jwt({ token, user }) {
-            if (user) {
-                token.id = user.id;
-                token.email = user.email;
-            }
-            return token;
-        },
-    },
+    //     async jwt({ token, user }) {
+    //         if (user) {
+    //             token.id = user.id;
+    //             token.email = user.email;
+    //         }
+    //         return token;
+    //     },
+    // },
 });
