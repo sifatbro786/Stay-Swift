@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-export default function Gallery({ gallery }) {
+const Gallery = ({ gallery }) => {
     const newGallery = [...gallery];
     newGallery.shift();
 
@@ -10,8 +10,8 @@ export default function Gallery({ gallery }) {
                 <Image
                     src={gallery[0]}
                     className="h-[400px]"
-                    alt="Main-Gallery-Image"
-                    width={624}
+                    alt="Main Pic"
+                    width={400}
                     height={400}
                 />
 
@@ -21,13 +21,15 @@ export default function Gallery({ gallery }) {
                             key={image}
                             src={image}
                             className="h-[400px]"
-                            alt="Sub-Gallery-Pics"
-                            width={312}
-                            height={200}
+                            alt="Sub Pics"
+                            width={400}
+                            height={400}
                         />
                     ))}
                 </div>
             </div>
         </section>
     );
-}
+};
+
+export default Gallery;

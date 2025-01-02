@@ -1,4 +1,4 @@
-export default function PastBooking() {
+const PastBooking = () => {
     return (
         <div className="space-y-4">
             <h2 className="text-xl font-bold">🕛️ Past Bookings</h2>
@@ -21,4 +21,6 @@ export default function PastBooking() {
             </div>
         </div>
     );
-}
+};
+
+export default PastBooking;

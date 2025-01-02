@@ -1,9 +1,9 @@
 import { userModel } from "@/models/user-model";
 import { dbConnect } from "@/service/mongo";
 import bcrypt from "bcryptjs";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
-export async function POST(request) {
+export const POST = async (request) => {
     const { fname, lname, email, password } = await request.json();
 
     await dbConnect();
@@ -18,7 +18,6 @@ export async function POST(request) {
 
     try {
         await userModel.create(newUser);
-
         return new NextResponse("User has been created", {
             status: 201,
         });
@@ -27,4 +26,4 @@ export async function POST(request) {
             status: 500,
         });
     }
-}
+};

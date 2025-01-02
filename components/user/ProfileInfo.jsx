@@ -1,7 +1,7 @@
-import { auth } from "@/auth";
 import Image from "next/image";
+import { auth } from "@/auth";
 
-export default async function ProfileInfo() {
+const ProfileInfo = async () => {
     const session = await auth();
 
     return (
@@ -16,7 +16,7 @@ export default async function ProfileInfo() {
                         className="rounded-full"
                     />
                 ) : (
-                    session?.user?.name?.charAt(0)?.toUpperCase()
+                    session?.user?.name.charAt(0)?.toUpperCase()
                 )}
             </div>
 
@@ -28,4 +28,6 @@ export default async function ProfileInfo() {
             <div className="w-3/4 border-b border-[#a4a4a4] py-6 lg:py-4"></div>
         </div>
     );
-}
+};
+
+export default ProfileInfo;

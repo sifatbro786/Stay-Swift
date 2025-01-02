@@ -1,7 +1,7 @@
 import { getReviewsForAHotel } from "@/database/queries";
 import Link from "next/link";
 
-export default async function HotelReviewNumber({ id }) {
+const HotelReviewNumber = async ({ id }) => {
     const reviews = await getReviewsForAHotel(id);
 
     return (
@@ -11,10 +11,12 @@ export default async function HotelReviewNumber({ id }) {
                     Be the first one to review
                 </Link>
             ) : (
-                <p className="underline">
-                    {reviews.length} {`Review${reviews.length > 1 ? "s" : ""}`}
-                </p>
+                <Link href={`/hotel/${id}/reviews`} className="underline">
+                    {reviews.length} Reviews
+                </Link>
             )}
         </>
     );
-}
+};
+
+export default HotelReviewNumber;

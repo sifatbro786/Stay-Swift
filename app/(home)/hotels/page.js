@@ -1,8 +1,8 @@
-import HotelList from "@/components/hotel/HotelList";
-import Filter from "@/components/search/Filter";
 import Search from "@/components/search/Search";
+import Filter from "@/components/search/Filter";
+import HotelList from "@/components/hotel/HotelList";
 
-export default function HotelListPage({ searchParams: { destination, checkin, checkout } }) {
+const HotelListPage = ({ searchParams: { destination, checkin, checkout } }) => {
     return (
         <>
             <section className="bg-[url('/hero-bg.jpg')] bg-cover bg-no-repeat bg-center pt-[100px] pb-[60px]">
@@ -23,4 +23,6 @@ export default function HotelListPage({ searchParams: { destination, checkin, ch
             </section>
         </>
     );
-}
+};
+
+export default HotelListPage;

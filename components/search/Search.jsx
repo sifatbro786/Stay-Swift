@@ -1,9 +1,9 @@
 "use client";
 
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useSearchParams, usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
 
-export default function Search({ fromList, destination, checkin, checkout }) {
+const Search = ({ fromList, destination, checkin, checkout }) => {
     const searchParams = useSearchParams();
     const pathname = usePathname();
     const { replace } = useRouter();
@@ -22,19 +22,18 @@ export default function Search({ fromList, destination, checkin, checkout }) {
 
         const state = { ...searchTerm, [name]: value };
 
-        if (new Date(state?.checkin).getTime() > new Date(state?.checkout).getTime()) {
+        if (new Date(state.checkin).getTime() > new Date(state.checkout).getTime()) {
             setAllowSearch(false);
         } else {
             setAllowSearch(true);
         }
-
         setSearchTerm(state);
     };
 
-    const doSearch = () => {
+    function doSearch(event) {
         const params = new URLSearchParams(searchParams);
-        params.set("destination", searchTerm?.destination || "all");
 
+        params.set("destination", searchTerm?.destination || "all");
         if (searchTerm?.checkin && searchTerm?.checkout) {
             params.set("checkin", searchTerm?.checkin);
             params.set("checkout", searchTerm?.checkout);
@@ -45,7 +44,7 @@ export default function Search({ fromList, destination, checkin, checkout }) {
         } else {
             replace(`${pathname}hotels?${params.toString()}`);
         }
-    };
+    }
 
     return (
         <>
@@ -57,7 +56,7 @@ export default function Search({ fromList, destination, checkin, checkout }) {
                             <select
                                 name="destination"
                                 id="destination"
-                                defaultValue={searchTerm?.destination}
+                                defaultValue={searchTerm.destination}
                                 onChange={handleInputs}
                             >
                                 <option value="Puglia">Puglia</option>
@@ -76,7 +75,7 @@ export default function Search({ fromList, destination, checkin, checkout }) {
                                 type="date"
                                 name="checkin"
                                 id="checkin"
-                                value={searchTerm?.checkin}
+                                value={searchTerm.checkin}
                                 onChange={handleInputs}
                             />
                         </h4>
@@ -89,7 +88,7 @@ export default function Search({ fromList, destination, checkin, checkout }) {
                                 type="date"
                                 name="checkout"
                                 id="checkout"
-                                value={searchTerm?.checkout}
+                                value={searchTerm.checkout}
                                 onChange={handleInputs}
                             />
                         </h4>
@@ -97,13 +96,11 @@ export default function Search({ fromList, destination, checkin, checkout }) {
                 </div>
             </div>
 
-            <button
-                disabled={!allowSearch}
-                onClick={doSearch}
-                className="search-btn cursor-pointer"
-            >
+            <button disabled={!allowSearch} className="search-btn" onClick={doSearch}>
                 🔍️ {fromList ? "Modify Search" : "Search"}
             </button>
         </>
     );
-}
+};
+
+export default Search;

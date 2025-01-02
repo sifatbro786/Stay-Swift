@@ -40,7 +40,7 @@
     }
 
     .btn-disabled {
-        @apply bg-gray-500 px-8 py-2 rounded-md block text-white font-bold shadow-lg cursor-pointer;
+        @apply bg-gray-500 px-8 py-2 rounded-md block text-white font-bold shadow-lg cursor-default;
     }
 
     #searchParams {
@@ -76,6 +76,6 @@
     }
 
     button:disabled {
-        @apply bg-gray-500 cursor-pointer shadow-none;
+        @apply bg-gray-500 cursor-default;
     }
 }

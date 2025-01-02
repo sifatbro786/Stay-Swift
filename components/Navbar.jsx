@@ -3,7 +3,7 @@ import Image from "next/image";
 import { auth } from "@/auth";
 import Logout from "./auth/Logout";
 
-export default async function Navbar({ sideMenu }) {
+const Navbar = async ({ sideMenu }) => {
     const session = await auth();
 
     return (
@@ -11,7 +11,6 @@ export default async function Navbar({ sideMenu }) {
             <Link href="/">
                 <Image src="/stayswift.svg" alt="Stay Swift Logo" width={200} height={200} />
             </Link>
-
             {sideMenu && (
                 <ul>
                     <li>
@@ -32,11 +31,11 @@ export default async function Navbar({ sideMenu }) {
 
                     <li>
                         {session?.user ? (
-                            <div>
+                            <idiv>
                                 <span className="mx-1"> {session?.user?.name} </span>
                                 <span> | </span>
                                 <Logout />
-                            </div>
+                            </idiv>
                         ) : (
                             <Link href="/login" className="login">
                                 Login
@@ -47,4 +46,6 @@ export default async function Navbar({ sideMenu }) {
             )}
         </nav>
     );
-}
+};
+
+export default Navbar;

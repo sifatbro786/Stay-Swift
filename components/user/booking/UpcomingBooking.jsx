@@ -1,4 +1,4 @@
-export default function UpcomingBooking() {
+const UpcomingBooking = () => {
     return (
         <div className="space-y-4">
             <h2 className="text-xl font-bold">⌛️ Upcomming Bookings</h2>
@@ -21,4 +21,6 @@ export default function UpcomingBooking() {
             </div>
         </div>
     );
-}
+};
+
+export default UpcomingBooking;

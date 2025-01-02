@@ -1,16 +1,11 @@
 "use client";
-
-import { signIn } from "next-auth/react";
-import Image from "next/image";
 import Link from "next/link";
+import Image from "next/image";
+import { signIn } from "next-auth/react";
 
-export default function SocialLogins({ mode }) {
-    const handleGoogleLogin = () => {
-        signIn("google", { callbackUrl: `${process.env.NEXT_PUBLIC_BASE_URL}/bookings` });
-    };
-
-    const handleFacebookLogin = () => {
-        signIn("facebook", { callbackUrl: `${process.env.NEXT_PUBLIC_BASE_URL}/bookings` });
+const SocialLogins = ({ mode }) => {
+    const handleAuth = () => {
+        signIn("google", { callbackUrl: "http://localhost:3000/bookings" });
     };
 
     return (
@@ -28,16 +23,12 @@ export default function SocialLogins({ mode }) {
                 or Signup with
             </div>
             <div className="flex gap-4">
-                <button
-                    onClick={handleFacebookLogin}
-                    className=" w-full mt-4 py-2 border-gray-600/30 border rounded-md flex items-center gap-2 justify-center"
-                >
+                <button className=" w-full mt-4 py-2 border-gray-600/30 border rounded-md flex items-center gap-2 justify-center">
                     <Image src="/fb.png" alt="facebook" width={40} height={40} />
                     <span>Facebook</span>
                 </button>
-
                 <button
-                    onClick={handleGoogleLogin}
+                    onClick={handleAuth}
                     className=" w-full mt-4 py-2 border-gray-600/30 border rounded-md flex items-center gap-2 justify-center"
                 >
                     <Image src="/google.png" alt="google" width={40} height={40} />
@@ -46,4 +37,6 @@ export default function SocialLogins({ mode }) {
             </div>
         </>
     );
-}
+};
+
+export default SocialLogins;

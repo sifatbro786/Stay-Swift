@@ -1,4 +1,4 @@
-export default function Overview({ overview }) {
+const Overview = ({ overview }) => {
     return (
         <section>
             <div className="container py-8">
@@ -7,4 +7,6 @@ export default function Overview({ overview }) {
             </div>
         </section>
     );
-}
+};
+
+export default Overview;

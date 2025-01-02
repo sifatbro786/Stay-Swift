@@ -1,6 +1,6 @@
 import { getRatingsForAHotel } from "@/database/queries";
 
-export default async function HotelRating({ id }) {
+const HotelRating = async ({ id }) => {
     const ratings = await getRatingsForAHotel(id);
 
     const getRatingDescription = (avgRating) => {
@@ -37,4 +37,6 @@ export default async function HotelRating({ id }) {
             <span className="font-medium">{getRatingDescription(avgRating)}</span>
         </>
     );
-}
+};
+
+export default HotelRating;
