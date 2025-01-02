@@ -8,14 +8,23 @@ import { replaceMongoIdInArray, replaceMongoIdInObject } from "@/utils/data-util
 
 import { isDateInbetween } from "@/utils/data-util";
 
-export async function getAllHotels(destination, checkin, checkout) {
+export async function getAllHotels(destination, checkin, checkout, category) {
     const regex = new RegExp(destination, "i");
+
     const hotelsByDestination = await hotelModel
         .find({ city: { $regex: regex } })
         .select(["thumbNailUrl", "name", "highRate", "lowRate", "city", "propertyCategory"])
         .lean();
 
     let allHotels = hotelsByDestination;
+
+    if (category) {
+        const categoriesToMatch = category.split("|");
+
+        allHotels = allHotels.filter((hotel) => {
+            return categoriesToMatch.includes(hotel.propertyCategory.toString());
+        });
+    }
 
     if (checkin && checkout) {
         allHotels = await Promise.all(
