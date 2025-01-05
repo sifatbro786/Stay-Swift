@@ -5,7 +5,7 @@ import { signIn } from "next-auth/react";
 
 const SocialLogins = ({ mode }) => {
     const handleAuth = () => {
-        signIn("google", { callbackUrl: "http://localhost:3000/bookings" });
+        signIn("google", { callbackUrl: `${process.env.NEXT_PUBLIC_BASE_URL}/bookings` });
     };
 
     return (
